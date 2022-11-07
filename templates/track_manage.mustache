@@ -1,0 +1,150 @@
+{{!
+    This file is part of Moodle - http://moodle.org/
+
+    Moodle is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Moodle is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
+}}
+{{!
+    @template local_genashtim_tms/track_manage
+
+    Example context (json):
+    {
+        "flatnavigation" : [
+            {
+                "showdivider": false,
+                "action": "#",
+                "isactive": true,
+                "get_indent": 1,
+                "is_section": false,
+                "text": "First"
+            },{
+                "showdivider": true,
+                "action": "#",
+                "isactive": false,
+                "get_indent": 0,
+                "is_section": true,
+                "text": "Last &amp; Second"
+            }
+        ]
+    }
+}}
+<h1>{{#str}} page_request_status, local_genashtim_tms {{/str}}</h1>
+<!-- Tabs navs -->
+<ul class="nav nav-tabs mb-3" id="tabTable" role="tablist">
+{{#has_my_request}}
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link active"
+      id="tab-1"
+      data-mdb-toggle="tab"
+      href="#tabs-1"
+      role="tab"
+      aria-controls="tabs-1"
+      aria-selected="true"
+      >My Request</a
+    >
+  </li>
+  {{/has_my_request}}
+  {{#has_staff_request}}
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="tab-2"
+      data-mdb-toggle="tab"
+      href="#tabs-2"
+      role="tab"
+      aria-controls="tabs-2"
+      aria-selected="false"
+      >Staff Request</a
+    >
+  </li>
+    {{/has_staff_request}}
+  {{#has_all_request}}
+  <li class="nav-item" role="presentation">
+    <a
+      class="nav-link"
+      id="tab-3"
+      data-mdb-toggle="tab"
+      href="#tabs-3"
+      role="tab"
+      aria-controls="tabs-3"
+      aria-selected="false"
+      >All Request</a
+    >
+  </li>
+    {{/has_all_request}}
+</ul>
+<!-- Tabs navs -->
+
+<!-- Tabs content -->
+<div class="tab-content" id="ex1-content">
+{{#has_my_request}}
+  <div
+    class="tab-pane fade show active"
+    id="tabs-1"
+    role="tabpanel"
+    aria-labelledby="tab-1"
+    >
+    <table id="tbsort"  class="generaltable">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Course Name</th>
+      <th>Email</th>
+      <th>Course Progress</th>
+      <th>PCP Hours</th>
+      <th>Enrolment Date</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Last Access</th>
+      <th>Completion</th>
+      <th>Time Spent</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
+  {{#my_request}}
+   {{/my_request}}
+  </div>
+  {{/has_my_request}}
+  {{#has_staff_request}}
+  <div class="tab-pane fade" id="tabs-2" role="tabpanel" aria-labelledby="tab-2">
+      <table id="tbsort"  class="generaltable">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Course Progress</th>
+      <th>PCP Hours</th>
+      <th>Enrolment Date</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Last Access</th>
+      <th>Completion</th>
+      <th>Time Spent</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+  </table>
+  </div>
+  {{/has_staff_request}}
+  {{#has_all_request}}
+  <div class="tab-pane fade" id="tabs-3" role="tabpanel" aria-labelledby="tab-3">
+    All Request
+  </div>
+  {{/has_all_request}}
+</div>
+

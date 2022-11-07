@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<XMLDB PATH="local/genashtim_tms/db" VERSION="20220930" COMMENT="XMLDB file for Moodle local_genashtim_tms"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="../../../lib/xmldb/xmldb.xsd"
+>
+  <TABLES>
+    <TABLE NAME="local_genashtim_tms" COMMENT="genashtim tracking request">
+      <FIELDS>
+        <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
+        <FIELD NAME="userid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="User id sent"/>
+        <FIELD NAME="manageremail" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="email can approve/disapprove"/>
+        <FIELD NAME="requesttype" TYPE="char" LENGTH="20" NOTNULL="true" SEQUENCE="false" COMMENT="request type name (Formal/Informal)"/>
+        <FIELD NAME="coursename" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="course name"/>
+        <FIELD NAME="coursedes" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="course description"/>
+        <FIELD NAME="courseduration" TYPE="text" NOTNULL="true" SEQUENCE="false" COMMENT="course duration"/>
+        <FIELD NAME="courselink" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="course duration"/>
+        <FIELD NAME="isfree" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="0 - not free, 1 - free"/>
+        <FIELD NAME="courseprice" TYPE="char" LENGTH="200" NOTNULL="false" SEQUENCE="false" COMMENT="course price"/>
+        <FIELD NAME="reason" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="reason of the request"/>
+        <FIELD NAME="status" TYPE="int" LENGTH="1" NOTNULL="true" SEQUENCE="false" COMMENT="0 created, 1 manager disapproved,2 manager approved, 3 lms team done"/>
+        <FIELD NAME="timecreated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+        <FIELD NAME="timeupdated" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false"/>
+      </FIELDS>
+      <KEYS>
+        <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
+      </KEYS>
+    </TABLE>
+  </TABLES>
+</XMLDB>
