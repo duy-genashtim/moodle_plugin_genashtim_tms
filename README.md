@@ -4,10 +4,10 @@
 ## About
 -----------
 
-This is the plugin to send the course request to the LMS Admin. Including tracking request and total training hours and total course that user taken every year
+This plugin is made to send the course request to the LMS Admin. Including tracking requests and total training hours and total courses that users take every year
 
 ## Author
 -------------
-Duy Hoang
-duy@genashtim.com
-November 2022
+- Duy Hoang
+- duy@genashtim.com
+- November 2022

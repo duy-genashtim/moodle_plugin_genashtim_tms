@@ -40,9 +40,9 @@ function local_genashtim_tms_extend_navigation(global_navigation $navigation) {
         $data_menu_items[] = $menuItem;
         $data_menu_items[] = $menuItemSub1;
         $data_menu_items[] = $menuItemSub2;
-        if($function->isAdmin()){
-            $data_menu_items[] = $menuItemSub3;
-        }
+        // if($function->isAdmin()){  }
+        $data_menu_items[] = $menuItemSub3;
+      
     }
 
    $CFG->custommenuitems = implode("\n", $data_menu_items );

@@ -126,15 +126,17 @@ class display
      * @param string $text
      * @param int $id id of request
      * @param string $name
+     * @param bool $isAdmin 
      * @return string url to v page
      */
-    public function LinkCourseDetail($text, $id,$name): string
+    public function LinkCourseDetail($text, $id,$name,$isAdmin=false): string
     {
         global $CFG;
         $char = strtoupper($name[0]);
         // $url = $CFG->wwwroot.'/report/progress/index.php?course='.$courseid.'&sifirst='.$char.'&silast';
         $url =  $CFG->wwwroot . '/report/completion/index.php?course=' . $id.'&sifirst='.$char.'&silast';
-        return '<a href="' . $url . '" target="_blank">' . $text . '</a> ';
+        
+        return $isAdmin?'<a href="' . $url . '" target="_blank">' . $text . '</a> ': $text;
     }
     /** Display course field by name.
      */

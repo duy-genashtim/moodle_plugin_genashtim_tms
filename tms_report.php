@@ -30,7 +30,9 @@ if(!$function->canAccessPlugin()){
     redirect($CFG->wwwroot.'/local/genashtim_tms/disabled.php');
 }
 if(!$function->isAdmin()){
-    redirect($CFG->wwwroot.'/local/genashtim_tms/track_manage.php');
+    // redirect($CFG->wwwroot.'/local/genashtim_tms/track_manage.php');
+    redirect($CFG->wwwroot.'/local/genashtim_tms/tms_report_detail.php?uid='.$USER->id);
+
 }
 
 

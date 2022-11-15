@@ -42,7 +42,7 @@ $templateData->has_my_request = true;
 //     $templateData->has_staff_request = true;
 // }
 if($function->isManager($USER->id)){
-    $templateData->staff_request = array_values($request->getRequest4Manager('duy@genashtim.com'));
+    $templateData->staff_request = array_values($request->getRequest4Manager($USER->email));
     $templateData->has_staff_request = true;
   }
 if($function->isAdmin()){

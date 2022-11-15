@@ -17,9 +17,7 @@ $y = optional_param("y",0,PARAM_INT);
 
 $PAGE->set_url(new moodle_url('/local/genashtim_tms/tms_report_detail.php'),array('uid'=>$uid));
 
-$previewnode = $PAGE->navigation->add(get_string('page_tms_report', 'local_genashtim_tms'), new moodle_url('/local/genashtim_tms/tms_report.php'), navigation_node::TYPE_CONTAINER);
-$subnode = $previewnode->add(get_string('page_tms_report_detail', 'local_genashtim_tms'),new moodle_url('/local/genashtim_tms/request_detail.php',array('uid'=>$uid)));
-$subnode->make_active();
+
 require_login();
 use \local_genashtim_tms\request;
 use \local_genashtim_tms\functions;
@@ -32,9 +30,21 @@ $display = new display();
 if(!$function->canAccessPlugin()){
     redirect($CFG->wwwroot.'/local/genashtim_tms/disabled.php');
 }
-if(!$function->isAdmin()){
-    redirect($CFG->wwwroot.'/local/genashtim_tms/track_manage.php');
+$previewnode = $PAGE->navigation->add(get_string('page_tms_report', 'local_genashtim_tms'), new moodle_url('/local/genashtim_tms/tms_report.php'), navigation_node::TYPE_CONTAINER);
+$subnode = $previewnode->add(get_string('page_tms_report_detail', 'local_genashtim_tms'),new moodle_url('/local/genashtim_tms/request_detail.php',array('uid'=>$uid)));
+$isAdmin = $function->isAdmin();
+if(!$isAdmin){
+    // redirect($CFG->wwwroot.'/local/genashtim_tms/track_manage.php');
+    if($uid == $USER->id){
+      $previewnode->make_active();
+    }else{
+      redirect($CFG->wwwroot.'/local/genashtim_tms/track_manage.php');
+    }
+   
+}else{
+  $subnode->make_active();
 }
+
 
 $user = $function->getUserRequest($uid);
 if(!isset($user->id)){
@@ -50,8 +60,8 @@ $PAGE->requires->js(new moodle_url($CFG->wwwroot.'/local/genashtim_tms/javascrip
 // $allRequests = $request->getRequestAll();
 echo $OUTPUT->header();
 
-$certificate_link = $CFG->wwwroot.'/mod/customcert/my_certificates.php?userid='.$userid;
-$userProfile_link = $CFG->wwwroot.'/user/profile.php?id='.$userid;
+$certificate_link = $CFG->wwwroot.'/mod/customcert/my_certificates.php?userid='.$uid;
+$userProfile_link = $CFG->wwwroot.'/user/profile.php?id='.$uid;
 echo $OUTPUT->heading( '<a href="'.$userProfile_link.'">'. $user->firstname . ' ' . $user->lastname .'</a>' . ' | <a href="'.$certificate_link.'" target="_blank" > Certificates</a>');
 ?>
 <div class="row pb-4">
@@ -99,7 +109,7 @@ echo $OUTPUT->heading( '<a href="'.$userProfile_link.'">'. $user->firstname . ' 
       $courseAmount =$display->DisplayCourseField($course , 'course_amount',true);
       $courseHours = $display->DisplayCourseField($course , 'training_hours');
        echo '<tr>';
-       echo '<td>'.$display->LinkCourseDetail($course->fullname , $course->id,$user->firstname).'</td>';
+       echo '<td>'.$display->LinkCourseDetail($course->fullname , $course->id,$user->firstname, $isAdmin).'</td>';
        echo '<td>'. $display->DisplayCourseField($course , 'course_type').'</td>';
        echo '<td>'.$course->courseProgress['text'].'</td>';
        echo '<td>'.$courseHours.'</td>';
